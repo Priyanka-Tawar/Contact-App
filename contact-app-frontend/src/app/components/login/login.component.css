@@ -1,0 +1,21 @@
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.bi-person-circle {
+  font-size: 4rem;
+}
+
+.btn-primary {
+  padding: 0.75rem;
+  font-weight: 500;
+}

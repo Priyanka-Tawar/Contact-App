@@ -1,0 +1,83 @@
+-- Test data generation script for Contact App
+-- Run this in PostgreSQL: psql -U postgres -d contactdb -f test-data.sql
+
+-- Insert 20 test users (skip if email already exists)
+INSERT INTO users (name, email, password, phone, address, about, enabled, created_at, updated_at) VALUES
+('John Doe', 'john.doe@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '1234567890', '123 Main St, New York', 'Software Developer', true, NOW(), NOW()),
+('Jane Smith', 'jane.smith@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '2345678901', '456 Oak Ave, Los Angeles', 'Product Manager', true, NOW(), NOW()),
+('Bob Johnson', 'bob.johnson@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '3456789012', '789 Pine Rd, Chicago', 'Designer', true, NOW(), NOW()),
+('Alice Williams', 'alice.williams@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '4567890123', '321 Elm St, Houston', 'Data Analyst', true, NOW(), NOW()),
+('Charlie Brown', 'charlie.brown@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '5678901234', '654 Maple Dr, Phoenix', 'Marketing Specialist', true, NOW(), NOW()),
+('Diana Prince', 'diana.prince@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '6789012345', '987 Cedar Ln, Philadelphia', 'HR Manager', true, NOW(), NOW()),
+('Eve Davis', 'eve.davis@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '7890123456', '147 Birch St, San Antonio', 'Business Analyst', true, NOW(), NOW()),
+('Frank Miller', 'frank.miller@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '8901234567', '258 Willow Ave, San Diego', 'Sales Executive', true, NOW(), NOW()),
+('Grace Lee', 'grace.lee@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '9012345678', '369 Ash Rd, Dallas', 'Content Writer', true, NOW(), NOW()),
+('Henry Wilson', 'henry.wilson@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0123456789', '741 Spruce Dr, San Jose', 'DevOps Engineer', true, NOW(), NOW()),
+('Iris Martinez', 'iris.martinez@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '1230987654', '852 Hickory Ln, Austin', 'QA Tester', true, NOW(), NOW()),
+('Jack Anderson', 'jack.anderson@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '2341098765', '963 Poplar St, Jacksonville', 'Project Manager', true, NOW(), NOW()),
+('Karen Taylor', 'karen.taylor@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '3452109876', '159 Fir Ave, Fort Worth', 'UX Researcher', true, NOW(), NOW()),
+('Leo Thomas', 'leo.thomas@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '4563210987', '357 Redwood Rd, Columbus', 'Security Analyst', true, NOW(), NOW()),
+('Mia Jackson', 'mia.jackson@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '5674321098', '486 Sequoia Dr, Charlotte', 'Frontend Developer', true, NOW(), NOW()),
+('Noah White', 'noah.white@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '6785432109', '579 Palm Ln, San Francisco', 'Backend Developer', true, NOW(), NOW()),
+('Olivia Harris', 'olivia.harris@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '7896543210', '681 Cherry St, Indianapolis', 'Full Stack Developer', true, NOW(), NOW()),
+('Paul Martin', 'paul.martin@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '8907654321', '792 Walnut Ave, Seattle', 'Database Admin', true, NOW(), NOW()),
+('Quinn Garcia', 'quinn.garcia@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '9018765432', '813 Beech Rd, Denver', 'Cloud Architect', true, NOW(), NOW()),
+('Rachel Rodriguez', 'rachel.rodriguez@test.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0129876543', '924 Magnolia Dr, Boston', 'Scrum Master', true, NOW(), NOW())
+ON CONFLICT (email) DO NOTHING;
+
+-- Insert 50 test contacts for the first user (assuming user_id = 1 exists)
+INSERT INTO contacts (name, email, phone, address, description, favorite, user_id, created_at, updated_at) VALUES
+('Contact 1', 'contact1@example.com', '1111111111', 'Address 1', 'Test contact 1', false, 1, NOW(), NOW()),
+('Contact 2', 'contact2@example.com', '2222222222', 'Address 2', 'Test contact 2', true, 1, NOW(), NOW()),
+('Contact 3', 'contact3@example.com', '3333333333', 'Address 3', 'Test contact 3', false, 1, NOW(), NOW()),
+('Contact 4', 'contact4@example.com', '4444444444', 'Address 4', 'Test contact 4', true, 1, NOW(), NOW()),
+('Contact 5', 'contact5@example.com', '5555555555', 'Address 5', 'Test contact 5', false, 1, NOW(), NOW()),
+('Contact 6', 'contact6@example.com', '6666666666', 'Address 6', 'Test contact 6', false, 1, NOW(), NOW()),
+('Contact 7', 'contact7@example.com', '7777777777', 'Address 7', 'Test contact 7', true, 1, NOW(), NOW()),
+('Contact 8', 'contact8@example.com', '8888888888', 'Address 8', 'Test contact 8', false, 1, NOW(), NOW()),
+('Contact 9', 'contact9@example.com', '9999999999', 'Address 9', 'Test contact 9', false, 1, NOW(), NOW()),
+('Contact 10', 'contact10@example.com', '1010101010', 'Address 10', 'Test contact 10', true, 1, NOW(), NOW()),
+('Contact 11', 'contact11@example.com', '1111111112', 'Address 11', 'Test contact 11', false, 1, NOW(), NOW()),
+('Contact 12', 'contact12@example.com', '1212121212', 'Address 12', 'Test contact 12', false, 1, NOW(), NOW()),
+('Contact 13', 'contact13@example.com', '1313131313', 'Address 13', 'Test contact 13', true, 1, NOW(), NOW()),
+('Contact 14', 'contact14@example.com', '1414141414', 'Address 14', 'Test contact 14', false, 1, NOW(), NOW()),
+('Contact 15', 'contact15@example.com', '1515151515', 'Address 15', 'Test contact 15', false, 1, NOW(), NOW()),
+('Contact 16', 'contact16@example.com', '1616161616', 'Address 16', 'Test contact 16', true, 1, NOW(), NOW()),
+('Contact 17', 'contact17@example.com', '1717171717', 'Address 17', 'Test contact 17', false, 1, NOW(), NOW()),
+('Contact 18', 'contact18@example.com', '1818181818', 'Address 18', 'Test contact 18', false, 1, NOW(), NOW()),
+('Contact 19', 'contact19@example.com', '1919191919', 'Address 19', 'Test contact 19', true, 1, NOW(), NOW()),
+('Contact 20', 'contact20@example.com', '2020202020', 'Address 20', 'Test contact 20', false, 1, NOW(), NOW()),
+('Contact 21', 'contact21@example.com', '2121212121', 'Address 21', 'Test contact 21', false, 1, NOW(), NOW()),
+('Contact 22', 'contact22@example.com', '2222222223', 'Address 22', 'Test contact 22', true, 1, NOW(), NOW()),
+('Contact 23', 'contact23@example.com', '2323232323', 'Address 23', 'Test contact 23', false, 1, NOW(), NOW()),
+('Contact 24', 'contact24@example.com', '2424242424', 'Address 24', 'Test contact 24', false, 1, NOW(), NOW()),
+('Contact 25', 'contact25@example.com', '2525252525', 'Address 25', 'Test contact 25', true, 1, NOW(), NOW()),
+('Contact 26', 'contact26@example.com', '2626262626', 'Address 26', 'Test contact 26', false, 1, NOW(), NOW()),
+('Contact 27', 'contact27@example.com', '2727272727', 'Address 27', 'Test contact 27', false, 1, NOW(), NOW()),
+('Contact 28', 'contact28@example.com', '2828282828', 'Address 28', 'Test contact 28', true, 1, NOW(), NOW()),
+('Contact 29', 'contact29@example.com', '2929292929', 'Address 29', 'Test contact 29', false, 1, NOW(), NOW()),
+('Contact 30', 'contact30@example.com', '3030303030', 'Address 30', 'Test contact 30', false, 1, NOW(), NOW()),
+('Contact 31', 'contact31@example.com', '3131313131', 'Address 31', 'Test contact 31', true, 1, NOW(), NOW()),
+('Contact 32', 'contact32@example.com', '3232323232', 'Address 32', 'Test contact 32', false, 1, NOW(), NOW()),
+('Contact 33', 'contact33@example.com', '3333333334', 'Address 33', 'Test contact 33', false, 1, NOW(), NOW()),
+('Contact 34', 'contact34@example.com', '3434343434', 'Address 34', 'Test contact 34', true, 1, NOW(), NOW()),
+('Contact 35', 'contact35@example.com', '3535353535', 'Address 35', 'Test contact 35', false, 1, NOW(), NOW()),
+('Contact 36', 'contact36@example.com', '3636363636', 'Address 36', 'Test contact 36', false, 1, NOW(), NOW()),
+('Contact 37', 'contact37@example.com', '3737373737', 'Address 37', 'Test contact 37', true, 1, NOW(), NOW()),
+('Contact 38', 'contact38@example.com', '3838383838', 'Address 38', 'Test contact 38', false, 1, NOW(), NOW()),
+('Contact 39', 'contact39@example.com', '3939393939', 'Address 39', 'Test contact 39', false, 1, NOW(), NOW()),
+('Contact 40', 'contact40@example.com', '4040404040', 'Address 40', 'Test contact 40', true, 1, NOW(), NOW()),
+('Contact 41', 'contact41@example.com', '4141414141', 'Address 41', 'Test contact 41', false, 1, NOW(), NOW()),
+('Contact 42', 'contact42@example.com', '4242424242', 'Address 42', 'Test contact 42', false, 1, NOW(), NOW()),
+('Contact 43', 'contact43@example.com', '4343434343', 'Address 43', 'Test contact 43', true, 1, NOW(), NOW()),
+('Contact 44', 'contact44@example.com', '4444444445', 'Address 44', 'Test contact 44', false, 1, NOW(), NOW()),
+('Contact 45', 'contact45@example.com', '4545454545', 'Address 45', 'Test contact 45', false, 1, NOW(), NOW()),
+('Contact 46', 'contact46@example.com', '4646464646', 'Address 46', 'Test contact 46', true, 1, NOW(), NOW()),
+('Contact 47', 'contact47@example.com', '4747474747', 'Address 47', 'Test contact 47', false, 1, NOW(), NOW()),
+('Contact 48', 'contact48@example.com', '4848484848', 'Address 48', 'Test contact 48', false, 1, NOW(), NOW()),
+('Contact 49', 'contact49@example.com', '4949494949', 'Address 49', 'Test contact 49', true, 1, NOW(), NOW()),
+('Contact 50', 'contact50@example.com', '5050505050', 'Address 50', 'Test contact 50', false, 1, NOW(), NOW())
+ON CONFLICT DO NOTHING;
+
+-- Note: All test users have password 'password123' (hashed with BCrypt)
+-- You can login with any email above using password: password123

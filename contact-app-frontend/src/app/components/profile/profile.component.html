@@ -1,0 +1,173 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">
+            <i class="bi bi-person-circle me-2"></i>
+            My Profile
+          </h4>
+        </div>
+        <div class="card-body p-4">
+          <!-- Loading Spinner -->
+          <div *ngIf="isLoading && !currentUser" class="text-center my-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+          <!-- Success Message -->
+          <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ successMessage }}
+            <button type="button" class="btn-close" (click)="successMessage = ''" aria-label="Close"></button>
+          </div>
+
+          <!-- Error Message -->
+          <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ errorMessage }}
+            <button type="button" class="btn-close" (click)="errorMessage = ''" aria-label="Close"></button>
+          </div>
+
+          <!-- Profile Form -->
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="currentUser">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="name" 
+                  formControlName="name"
+                  [class.is-invalid]="profileForm.get('name')?.invalid && profileForm.get('name')?.touched">
+                <div *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched" class="invalid-feedback">
+                  Name is required (min 3 characters)
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input 
+                  type="email" 
+                  class="form-control" 
+                  id="email" 
+                  formControlName="email"
+                  [class.is-invalid]="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+                <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="invalid-feedback">
+                  Please enter a valid email
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input 
+                  type="tel" 
+                  class="form-control" 
+                  id="phone" 
+                  formControlName="phone">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="address" 
+                  formControlName="address">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="about" class="form-label">About</label>
+              <textarea 
+                class="form-control" 
+                id="about" 
+                formControlName="about"
+                rows="3"></textarea>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-6 mb-2">
+                <div class="text-muted">
+                  <small>
+                    <i class="bi bi-calendar me-2"></i>
+                    Joined: {{ currentUser.createdAt | date: 'medium' }}
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2 text-md-end">
+                <div class="text-muted">
+                  <small>
+                    <i class="bi bi-clock me-2"></i>
+                    Last Updated: {{ currentUser.updatedAt | date: 'medium' }}
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+              <button 
+                *ngIf="!isEditing" 
+                type="button" 
+                class="btn btn-primary"
+                (click)="enableEdit()">
+                <i class="bi bi-pencil me-2"></i>
+                Edit Profile
+              </button>
+
+              <ng-container *ngIf="isEditing">
+                <button 
+                  type="submit" 
+                  class="btn btn-success"
+                  [disabled]="profileForm.invalid || isLoading">
+                  <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+                  <i *ngIf="!isLoading" class="bi bi-check-circle me-2"></i>
+                  Save Changes
+                </button>
+                <button 
+                  type="button" 
+                  class="btn btn-secondary"
+                  (click)="cancelEdit()"
+                  [disabled]="isLoading">
+                  <i class="bi bi-x-circle me-2"></i>
+                  Cancel
+                </button>
+              </ng-container>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Additional Info Card -->
+      <div class="card shadow mt-4" *ngIf="currentUser">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="bi bi-info-circle me-2"></i>
+            Account Information
+          </h5>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <p class="mb-2">
+                <strong>User ID:</strong> {{ currentUser.id }}
+              </p>
+              <p class="mb-2">
+                <strong>Email:</strong> {{ currentUser.email }}
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-2">
+                <strong>Name:</strong> {{ currentUser.name }}
+              </p>
+              <p class="mb-2">
+                <strong>Phone:</strong> {{ currentUser.phone || 'Not provided' }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

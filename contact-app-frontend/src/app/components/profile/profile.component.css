@@ -1,0 +1,19 @@
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+.card-header {
+  border-radius: 10px 10px 0 0 !important;
+  padding: 1.25rem;
+}
+
+.form-control:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.btn {
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+}
