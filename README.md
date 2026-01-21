@@ -176,49 +176,9 @@ Content-Type: application/json
 
 ### Frontend (api.config.ts)
 - API Base URL: http://localhost:8080/api
-- CORS Origin: http://localhost:4200
 
-## Project Screenshots
 
-### Login Page
-Clean and modern login interface with form validation
 
-### Dashboard
-Card-based contact listing with pagination and CRUD operations
 
-### Profile Management
-View and edit user profile information
 
-## Future Enhancements
 
-- [ ] Contact image upload
-- [ ] Advanced search and filtering
-- [ ] Export contacts to CSV
-- [ ] Email verification
-- [ ] Password reset functionality
-- [ ] Dark mode
-- [ ] Contact groups/categories
-- [ ] Import contacts from file
-
-## Troubleshooting
-
-### Database Connection Issues
-Ensure PostgreSQL is running and the database 'contactdb' exists
-
-### CORS Errors
-Verify frontend URL is allowed in backend CORS configuration
-
-### Token Expiration
-Login again if you see unauthorized errors
-
-## License
-
-This project is created for educational purposes.
-
-## Support
-
-For issues or questions, please check the README files in individual project folders:
-- Backend: `contact-app-backend/README.md`
-- Frontend: `contact-app-frontend/README.md`
-# Task26
-# task70
